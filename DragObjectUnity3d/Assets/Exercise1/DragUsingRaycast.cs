@@ -19,7 +19,7 @@ public class DragUsingRaycast : MonoBehaviour
         //Draw ray
         _worldMousePosition = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 21f));
         _direction = _worldMousePosition - Camera.main.transform.position;
-        Debug.DrawRay(transform.position, _direction, Color.blue);
+        Debug.DrawRay(transform.position, _direction, Color.red);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -27,10 +27,20 @@ public class DragUsingRaycast : MonoBehaviour
             if (Physics.Raycast(transform.position, _direction, out hit, Mathf.Infinity, _draggableLayer))
             {
                 Debug.Log(hit.transform.name);
+                Debug.DrawRay(transform.position, _direction, Color.red);
                 _selectedObject = hit.transform.gameObject;
                 targetObjectHeight = _selectedObject.GetComponent<MeshRenderer>().bounds.size.y;
                 _isDragging = true;
             }
+        }
+
+        if (Input.GetMouseButtonUp(0))
+        {
+            if (_isDragging)
+            {
+                _isDragging = false;
+            }
+            _selectedObject = null;
         }
 
         //Dragging
@@ -39,22 +49,20 @@ public class DragUsingRaycast : MonoBehaviour
             Vector3 pos = mousePos();
             _selectedObject.transform.position = pos;
         }
-
-        if (Input.GetMouseButtonUp(0))
-        {
-            _selectedObject = null;
-            _isDragging = false;
-        }
     }
 
     //new coordinate
     Vector3 mousePos()
     {
         Vector3 newPos = new Vector3();
-        if(Physics.Raycast(transform.position, _direction, out hit, Mathf.Infinity, _QuadLayer))
+        if (Physics.Raycast(transform.position, _direction, out hit, Mathf.Infinity, _QuadLayer))
         {
             Debug.Log("drag");
-            newPos = hit.point + new Vector3(0f, targetObjectHeight/2f, 0f);
+            newPos = hit.point + new Vector3(0f, targetObjectHeight / 2f, 0f);
+        }
+        else
+        {
+            _isDragging = false;
         }
         return newPos;
     }
