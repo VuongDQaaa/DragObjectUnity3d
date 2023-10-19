@@ -18,7 +18,7 @@ public class MovingCam : MonoBehaviour
     void Update()
     {
         //Get angle beetween mouse and word mouse;
-        _mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, Input.mousePosition.y, 10f));
+        _mouseWorldPos = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x, 0f, 10f));
         Vector3 targetDir = _mouseWorldPos - transform.position;
         Vector3 forward = transform.forward;
         _angle = Vector3.SignedAngle(targetDir, forward, Vector3.up);
@@ -45,13 +45,13 @@ public class MovingCam : MonoBehaviour
             Vector3 currentMousePos = Input.mousePosition - _mousePos;
             _mousePos = Input.mousePosition;
 
-            if(_angle < -5.0f || _mouseWorldPos.y > 0)
+            if(_angle < -5.0f)
             {
-                transform.Rotate(Vector3.up, -currentMousePos.x * -_angle * Time.deltaTime);
+                transform.Rotate(Vector3.up, - currentMousePos.x * Time.deltaTime * -_angle);
             }
             else if(_angle > 5.0f)
             {
-                transform.Rotate(Vector3.up, -currentMousePos.x * _angle * Time.deltaTime);
+                transform.Rotate(Vector3.up, - currentMousePos.x * Time.deltaTime * _angle );
             }
             else
             {

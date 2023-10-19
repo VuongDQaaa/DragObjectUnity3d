@@ -50,7 +50,7 @@ public class DragAndRotate : MonoBehaviour
 
         if (Input.GetMouseButtonUp(0) && _rotatedGameObject != null)
         {
-            if(_isRotating == true)
+            if (_isRotating == true)
             {
                 _isRotating = false;
             }
@@ -61,11 +61,23 @@ public class DragAndRotate : MonoBehaviour
             Vector3 currentMousePos = Input.mousePosition - _mousePos;
             _mousePos = Input.mousePosition;
 
-            if (angle < -5.0f)
+            //first corner
+            if (angle < -5.0f && hit.point.y > 0)
             {
                 _rotatedGameObject.transform.Rotate(Vector3.forward, -currentMousePos.x * -angle * Time.deltaTime);
             }
-            else if (angle > 5.0f)
+            //second corner
+            else if (angle < -5.0f && hit.point.y < 0)
+            {
+                _rotatedGameObject.transform.Rotate(Vector3.forward, -currentMousePos.x * angle * Time.deltaTime);
+            }
+            //third corner
+            else if (angle > 5.0f && hit.point.y < 0)
+            {
+                _rotatedGameObject.transform.Rotate(Vector3.forward, -currentMousePos.x * -angle * Time.deltaTime);
+            }
+            //fourd corner
+            else if (angle > 5.0f && hit.point.y > 0)
             {
                 _rotatedGameObject.transform.Rotate(Vector3.forward, -currentMousePos.x * angle * Time.deltaTime);
             }

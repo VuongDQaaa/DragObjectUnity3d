@@ -1,5 +1,5 @@
 sceneSetups:
-- path: Assets/Exercise3/DragMovingCamera.unity
+- path: Assets/Exercise2/DragAndRotate.unity
   isLoaded: 1
   isActive: 1
   isSubScene: 0
