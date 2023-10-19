@@ -54,10 +54,9 @@ public class DragUsingRaycast : MonoBehaviour
     //new coordinate
     Vector3 mousePos()
     {
-        Vector3 newPos = new Vector3();
+        Vector3 newPos = new();
         if (Physics.Raycast(transform.position, _direction, out hit, Mathf.Infinity, _QuadLayer))
         {
-            Debug.Log("drag");
             newPos = hit.point + new Vector3(0f, targetObjectHeight / 2f, 0f);
         }
         else

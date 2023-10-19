@@ -38,6 +38,7 @@
   <ItemGroup>
      <Compile Include="Assets\Exercise2\DragAndRotate.cs" />
      <Compile Include="Assets\Exercise1\DragUsingRaycast.cs" />
+     <Compile Include="Assets\Exercise3\MovingCam.cs" />
     <Reference Include="UnityEngine">
         <HintPath>C:\Program Files\Unity\Hub\Editor\2021.3.19f1\Editor\Data\Managed\UnityEngine\UnityEngine.dll</HintPath>
     </Reference>

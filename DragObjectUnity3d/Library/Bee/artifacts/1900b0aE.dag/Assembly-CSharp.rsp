@@ -349,6 +349,7 @@
 -r:"Library/Bee/artifacts/1900b0aE.dag/UnityEngine.UI.ref.dll"
 "Assets/Exercise1/DragUsingRaycast.cs"
 "Assets/Exercise2/DragAndRotate.cs"
+"Assets/Exercise3/MovingCam.cs"
 -langversion:9.0
 
 /deterministic
